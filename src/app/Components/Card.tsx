@@ -23,7 +23,7 @@ export const Card = ({
         height={150}
         className="rounded-3xl py-2"
       />
-      <div className="text-center self-center flex flex-col text-[18px]">
+      <div className="text-left self-center flex flex-col text-[18px]">
         <p>
           Nombre: <span className="text-blue-500">{" " + name}</span>
         </p>
