@@ -23,9 +23,9 @@ export default function Profile() {
         />
       </div>
       <div className="flex justify-center flex-col items-center font-semibold">
-        <h1 className="text-[25px] ">{profile.name}</h1>
+        <h1 className="text-[25px] py-4 underline">{profile.name}</h1>
       </div>
-      <div className="flex flex-wrap justify-between flex-row gap-6 text-[30px] font-semibold px-4 text-gray-400">
+      <div className="flex flex-wrap justify-between flex-row gap-6 text-[30px] font-semibold px-4 text-gray-400 py-5">
         <p className="w-[35%]">
           Altura: <span className="text-white">{" " + profile.height}</span>
         </p>
