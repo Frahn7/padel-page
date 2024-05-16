@@ -1,11 +1,12 @@
 import Image from "next/image";
 import React from "react";
 
-interface PropsCard {
+interface PropsCard extends React.ComponentProps<"div"> {
   image?: string;
   name: string;
   height: string;
   racket: string;
+  onClick: () => void;
 }
 
 export const Card = ({
@@ -13,9 +14,13 @@ export const Card = ({
   name,
   racket,
   height,
+  onClick,
 }: PropsCard) => {
   return (
-    <div className="px-4 flex flex-row gap-3 w-[30%] border-2 border-blue-600 rounded-xl">
+    <div
+      className="px-4 flex flex-row gap-3 w-[30%] border-2 border-blue-600 rounded-xl cursor-pointer hover:border-blue-300 bg-gray-800 hover:bg-gray-700"
+      onClick={onClick}
+    >
       <Image
         alt="/"
         src={image}

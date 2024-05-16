@@ -2,13 +2,14 @@
 
 import { useState } from "react";
 import { Card } from "../Components/Card";
-import PlayersGrup from "../hooks/MembersGrup";
+import useMembersGroup from "../hooks/useMembersGroup";
 import { Input } from "../Components/ui/Input";
+import { useRouter } from "next/navigation";
 
 export default function Members() {
   const [filterMembers, setFilterMembers] = useState("");
-
-  const MappedMembers = PlayersGrup();
+  const MappedMembers = useMembersGroup();
+  const router = useRouter();
 
   const Players = !filterMembers
     ? MappedMembers
@@ -30,6 +31,7 @@ export default function Members() {
       <div className="flex flex-wrap flex-row justify-center gap-4 py-3">
         {Players.map((member, i) => (
           <Card
+            onClick={() => router.push(`/member-profile?id=${member.id}`)}
             key={i}
             height={member.height}
             name={member.name}
