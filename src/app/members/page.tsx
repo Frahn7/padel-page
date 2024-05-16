@@ -7,6 +7,7 @@ import { Input } from "../Components/ui/Input";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Button } from "../Components/ui/Button";
+import { IoIosArrowBack } from "react-icons/io";
 
 export default function Members() {
   const [filterMembers, setFilterMembers] = useState("");
@@ -24,8 +25,16 @@ export default function Members() {
 
   return (
     <div className="min-h-screen px-4 py-4">
+      <IoIosArrowBack
+        className="text-[35px] cursor-pointer"
+        onClick={() => router.replace("/")}
+      />
       <div className="flex justify-end px-3 text-[18px]">
-        <Button title="Historial" types="blue" />
+        <Button
+          title="Historial"
+          types="blue"
+          onClick={() => router.push("/historial")}
+        />
       </div>
       <div className="flex justify-center mt-4">
         <Image
