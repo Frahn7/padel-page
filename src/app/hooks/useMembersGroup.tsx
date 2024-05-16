@@ -1,5 +1,5 @@
 export default function MembersGroup() {
-  const MembersGroup = () => [
+  return [
     {
       name: "Francisco Villella",
       id: "1",
@@ -39,7 +39,7 @@ export default function MembersGroup() {
       image: "/img/members/lucascv.jpg",
       racket: "QUICK FLEX 40",
       height: "1,96",
-      site: "Izquierda",
+      site: "Derecha",
       ptos: 0,
       wins: 0,
       type: "Agresivo",
@@ -67,10 +67,4 @@ export default function MembersGroup() {
       type: "Defensivo",
     },
   ];
-
-  const PlayersGrup = MembersGroup().map((member) => {
-    return { ...member };
-  });
-
-  return PlayersGrup;
 }

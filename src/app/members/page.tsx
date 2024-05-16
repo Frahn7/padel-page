@@ -5,6 +5,8 @@ import { Card } from "../Components/Card";
 import useMembersGroup from "../hooks/useMembersGroup";
 import { Input } from "../Components/ui/Input";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import { Button } from "../Components/ui/Button";
 
 export default function Members() {
   const [filterMembers, setFilterMembers] = useState("");
@@ -22,10 +24,23 @@ export default function Members() {
 
   return (
     <div className="min-h-screen px-4 py-4">
-      <div className="flex justify-center">
-        <h1 className="text-[35px]">PADEL MAFIA</h1>
+      <div className="flex justify-end px-3 text-[18px]">
+        <Button title="Historial" types="blue" />
       </div>
-      <div className="flex justify-center py-4">
+      <div className="flex justify-center mt-4">
+        <Image
+          alt="/"
+          onClick={() => router.push("/")}
+          src={"/img/Logo.png"}
+          height={150}
+          width={150}
+          className="cursor-pointer border-2 rounded-xl"
+        />
+      </div>
+      <div className="mt-8 text-center text-[30px] font-serif font-semibold text-gray-500">
+        <p>Miembros del grupo</p>
+      </div>
+      <div className="flex justify-center py-7">
         <Input onChange={(e) => setFilterMembers(e.target.value)} />
       </div>
       <div className="flex flex-wrap flex-row justify-center gap-4 py-3">
