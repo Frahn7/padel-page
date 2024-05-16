@@ -3,8 +3,9 @@
 import { useSearchParams } from "next/navigation";
 import useMembersGroup from "../hooks/useMembersGroup";
 import Image from "next/image";
+import { Suspense } from "react";
 
-export default function Profile() {
+function Profile() {
   const params = useSearchParams();
   const id = params.get("id");
   const members = useMembersGroup();
@@ -48,5 +49,13 @@ export default function Profile() {
         </p>
       </div>
     </div>
+  );
+}
+
+export default function ProfileSuspense() {
+  return (
+    <Suspense>
+      <Profile />
+    </Suspense>
   );
 }
