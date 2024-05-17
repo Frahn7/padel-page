@@ -11,12 +11,12 @@ import { IoIosArrowBack } from "react-icons/io";
 
 export default function Members() {
   const [filterMembers, setFilterMembers] = useState("");
-  const MappedMembers = useMembersGroup();
+  const { loading, players } = useMembersGroup();
   const router = useRouter();
 
   const Players = !filterMembers
-    ? MappedMembers
-    : MappedMembers.filter(
+    ? players
+    : players.filter(
         (member) =>
           member.name.toUpperCase().includes(filterMembers.toUpperCase()) ||
           member.height.toUpperCase().includes(filterMembers.toUpperCase()) ||
@@ -53,16 +53,18 @@ export default function Members() {
         <Input onChange={(e) => setFilterMembers(e.target.value)} />
       </div>
       <div className="flex flex-wrap flex-row justify-center gap-4 py-3">
-        {Players.map((member, i) => (
-          <Card
-            onClick={() => router.push(`/member-profile?id=${member.id}`)}
-            key={i}
-            height={member.height}
-            name={member.name}
-            racket={member.racket}
-            image={member?.image}
-          />
-        ))}
+        {loading
+          ? "Cargando..."
+          : Players.map((member, i) => (
+              <Card
+                onClick={() => router.push(`/member-profile?id=${member.id}`)}
+                key={i}
+                height={member.height}
+                name={member.name}
+                racket={member.racket}
+                image={member?.image}
+              />
+            ))}
       </div>
     </div>
   );
