@@ -46,7 +46,7 @@ export default function Members() {
           className="cursor-pointer border-2 rounded-xl"
         />
       </div>
-      <div className="mt-8 text-center text-[30px] font-serif font-semibold text-gray-500">
+      <div className="mt-8 text-center text-[30px]  font-semibold text-gray-500">
         <p>Miembros del grupo</p>
       </div>
       <div className="flex justify-center py-7">

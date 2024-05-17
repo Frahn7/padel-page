@@ -14,7 +14,7 @@ export default function Historial() {
         className="text-[35px] cursor-pointer"
         onClick={() => router.replace("/members")}
       />
-      <div className="text-center text-[30px] font-serif font-semibold text-gray-500">
+      <div className="text-center text-[30px] font-semibold text-gray-500">
         <p>Historial</p>
       </div>
       <div className="flex items-center py-8 flex-col gap-3">
