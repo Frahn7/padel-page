@@ -14,7 +14,7 @@ export default function MembersGroup() {
 
   useEffect(() => {
     const HandleFetch = async () => {
-      await fetch("http://localhost:3000/api/getAllUsers")
+      await fetch("/api/getAllUsers")
         .then((data) => data.json())
         .then((padeleros) => setPlayers(padeleros.results))
         .finally(() => setLoading(false));

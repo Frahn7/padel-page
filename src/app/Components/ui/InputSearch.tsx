@@ -2,7 +2,7 @@ import React from "react";
 
 interface PropsInput extends React.ComponentProps<"input"> {}
 
-export const Input = ({ ...props }: PropsInput) => {
+export const InputSearch = ({ ...props }: PropsInput) => {
   return (
     <div>
       <label className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">

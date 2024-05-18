@@ -23,7 +23,7 @@ export default function GetProfile({ id }: Props) {
 
   useEffect(() => {
     const handleFetchUser = async () => {
-      await fetch(process.env.NEXT_PUBLIC_API + `/getUser?id=${id}`)
+      await fetch(`/api/getUser?id=${id}`)
         .then((res) => res.json())
         .then((data) => setProfile(data.results))
         .finally(() => setLoading(false));

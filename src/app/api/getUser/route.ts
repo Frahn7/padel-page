@@ -1,8 +1,9 @@
-import { createPool } from "mysql";
+import { createPool } from "mysql2";
 
 export async function GET(request: Request) {
   const connection = createPool({
     host: process.env.HOST,
+    port: 44139,
     database: process.env.DATABASE,
     user: process.env.USER,
     password: process.env.PASSWORD,
@@ -11,7 +12,7 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
 
   const id = searchParams.get("id");
-  const query = "SELECT * FROM `data-users` WHERE `id-users`=" + id;
+  const query = "SELECT * FROM `data_users` WHERE `id_users`=" + id;
 
   try {
     const results = await new Promise((resolve, reject) => {

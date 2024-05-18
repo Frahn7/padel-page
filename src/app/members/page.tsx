@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Card } from "../Components/Card";
 import useMembersGroup from "../hooks/useMembersGroup";
-import { Input } from "../Components/ui/Input";
+import { InputSearch } from "../Components/ui/InputSearch";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Button } from "../Components/ui/Button";
@@ -14,6 +14,8 @@ export default function Members() {
   const { loading, players } = useMembersGroup();
   const router = useRouter();
 
+  console.log(players);
+
   const Players = !filterMembers
     ? players
     : players.filter(
@@ -23,20 +25,29 @@ export default function Members() {
           member.racket.toUpperCase().includes(filterMembers.toUpperCase())
       );
 
+  if (loading) {
+    return "Cargando...";
+  }
+
   return (
     <div className="min-h-screen px-4 py-4">
       <IoIosArrowBack
         className="text-[35px] cursor-pointer"
         onClick={() => router.replace("/")}
       />
-      <div className="flex justify-end px-3 text-[18px]">
+      <div className="flex justify-end  px-3 text-[18px]">
         <Button
           title="Historial"
           types="blue"
           onClick={() => router.push("/historial")}
         />
+        <Button
+          title="Agregar jugador"
+          types="dark"
+          onClick={() => router.push("/add-player")}
+        />
       </div>
-      <div className="flex justify-center mt-4">
+      <div className="flex justify-center  mt-4">
         <Image
           alt="/"
           onClick={() => router.push("/")}
@@ -50,21 +61,19 @@ export default function Members() {
         <p>Miembros del grupo</p>
       </div>
       <div className="flex justify-center py-7">
-        <Input onChange={(e) => setFilterMembers(e.target.value)} />
+        <InputSearch onChange={(e) => setFilterMembers(e.target.value)} />
       </div>
       <div className="flex flex-wrap flex-row justify-center gap-4 py-3">
-        {loading
-          ? "Cargando..."
-          : Players.map((member, i) => (
-              <Card
-                onClick={() => router.push(`/member-profile?id=${member.id}`)}
-                key={i}
-                height={member.height}
-                name={member.name}
-                racket={member.racket}
-                image={member?.image}
-              />
-            ))}
+        {Players.map((member, i) => (
+          <Card
+            onClick={() => router.push(`/member-profile?id=${member.id}`)}
+            key={i}
+            height={member.height}
+            name={member.name}
+            racket={member.racket}
+            image={member?.image}
+          />
+        ))}
       </div>
     </div>
   );
