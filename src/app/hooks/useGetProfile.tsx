@@ -6,7 +6,6 @@ interface Props {
 
 interface ProfileProps {
   id: number;
-  "id-users": number;
   name: string;
   image: string;
   site: string;
