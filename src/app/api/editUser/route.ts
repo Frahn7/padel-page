@@ -13,8 +13,11 @@ export async function POST(request: Request) {
 
   const { height, points, raquet, site, type, wins, id } = body;
 
-  const query =
-    "UPDATE `data_users` SET height = '?', points = '?', racket = '?', site = '?', type = '?', wins = '?' WHERE id = ?";
+  const query = `
+    UPDATE data_users 
+    SET height = ?, points = ?, racket = ?, site = ?, type = ?, wins = ? 
+    WHERE id = ?
+  `;
 
   const values = [height, points, raquet, site, type, wins, id];
 
@@ -30,7 +33,7 @@ export async function POST(request: Request) {
     });
     return Response.json({
       message: "Usuario actualizado correctamente",
-      results,
+      values,
     });
   } catch (error) {
     console.error("Error executing query", error);

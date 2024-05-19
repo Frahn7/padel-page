@@ -12,7 +12,7 @@ export default function Historial() {
     <div className="px-4 flex justify-center flex-col py-4 ">
       <IoIosArrowBack
         className="text-[35px] cursor-pointer"
-        onClick={() => router.replace("/members")}
+        onClick={() => router.push("/members")}
       />
       <div className="text-center text-[30px] font-semibold text-gray-500">
         <p>Historial</p>

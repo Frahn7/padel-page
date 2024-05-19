@@ -79,7 +79,7 @@ export default function AddPlayer() {
     })
       .then((res) => res.json())
       .then((data) => console.log(data))
-      .finally(() => router.replace("/members"))
+      .finally(() => router.push("/members"))
       .catch((error) => {
         console.error("Error:", error);
       });
@@ -89,7 +89,7 @@ export default function AddPlayer() {
     <div>
       <IoIosArrowBack
         className="text-[35px] cursor-pointer"
-        onClick={() => router.replace("/")}
+        onClick={() => router.push("/")}
       />
       <div className="flex justify-center min-h-screen">
         <div className="flex items-center pt-5">

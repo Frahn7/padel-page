@@ -27,7 +27,7 @@ function Profile() {
       <div className="flex flex-row justify-between px-4">
         <IoIosArrowBack
           className="text-[35px] cursor-pointer"
-          onClick={() => router.replace("/members")}
+          onClick={() => router.push("/members")}
         />
         {edits ? (
           <FcCancel
@@ -47,44 +47,63 @@ function Profile() {
           <Image
             alt="/"
             src={profile.image}
-            height={200}
-            width={200}
+            height={150}
+            width={150}
             className="rounded-full"
           />
         </div>
         <div className="flex justify-center flex-col items-center font-semibold">
-          <h1 className="text-[25px] py-4 underline">{profile.name}</h1>
+          <h1 className="text-[27px] py-4">{profile.name}</h1>
         </div>
 
         {edits ? (
-          <Edits id={profile.id} />
+          <Edits profile={profile} />
         ) : (
-          <div className="flex flex-wrap justify-between flex-row gap-6 text-[20px] font-semibold px-4 text-gray-400 py-5">
-            <p className="w-[33%]">
-              Altura: <span className="text-white">{" " + profile.height}</span>
-            </p>
-            <p className="w-[35%]">
-              Puntos:{" "}
-              <span className="text-white">
-                {profile.points !== null
-                  ? profile.points
-                  : "No hay puntos registrados"}
-              </span>
-            </p>
-            <p className="w-[35%]">
-              Paleta: <span className="text-white">{" " + profile.racket}</span>
-            </p>
-            <p className="w-[35%]">
-              Sitio en la cancha:
-              <span className="text-white">{" " + profile.site}</span>
-            </p>
-            <p className="w-[35%]">
-              Tipo de jugador:{" "}
-              <span className="text-white">{" " + profile.type}</span>
-            </p>
-            <p className="w-[35%]">
-              Victorias:<span className="text-white">{" " + profile.wins}</span>
-            </p>
+          <div className="text-[22px] mt-4 font-semibold px-3 text-gray-400 py-5 space-y-3">
+            <div className="flex flex-row justify-between px-5 ">
+              <p>
+                Altura:{" "}
+                <span className="text-white text-[19px]">
+                  {" " + profile.height}
+                </span>
+              </p>
+              <p>
+                Puntos:{" "}
+                <span className="text-white text-[19px]">
+                  {profile.points !== null
+                    ? profile.points
+                    : "No hay puntos registrados"}
+                </span>
+              </p>
+            </div>
+            <div className="flex flex-row justify-between px-5 ">
+              <p>
+                Paleta:{" "}
+                <span className="text-white text-[19px]">
+                  {" " + profile.racket}
+                </span>
+              </p>
+              <p>
+                Sitio en la cancha:{" "}
+                <span className="text-white text-[19px]">
+                  {" " + profile.site}
+                </span>
+              </p>
+            </div>
+            <div className="flex flex-row justify-between px-5 ">
+              <p>
+                Tipo de jugador:{" "}
+                <span className="text-white text-[19px]">
+                  {" " + profile.type}
+                </span>
+              </p>
+              <p>
+                Victorias:{" "}
+                <span className="text-white text-[19px]">
+                  {" " + profile.wins}
+                </span>
+              </p>
+            </div>
           </div>
         )}
       </span>
