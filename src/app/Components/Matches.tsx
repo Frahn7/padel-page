@@ -8,7 +8,7 @@ interface PropsPartidos {
   set2: string;
 }
 
-export const Partidos = ({
+export const Matches = ({
   cancha,
   fecha,
   jugadores,

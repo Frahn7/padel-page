@@ -1,7 +1,7 @@
 "use client";
 
 import { IoIosArrowBack } from "react-icons/io";
-import { Partidos } from "../Components/Partidos";
+import { Matches } from "../Components/Matches";
 import { useRouter } from "next/navigation";
 
 export default function Historial() {
@@ -18,7 +18,7 @@ export default function Historial() {
         <p>Historial</p>
       </div>
       <div className="flex items-center py-8 flex-col gap-3">
-        <Partidos
+        <Matches
           cancha="Escondida"
           fecha="15-05-2024"
           jugadores={Players}
