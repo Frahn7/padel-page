@@ -87,125 +87,136 @@ export default function AddPlayer() {
 
   return (
     <div>
-      <IoIosArrowBack
-        className="text-[35px] cursor-pointer"
-        onClick={() => router.push("/")}
-      />
-      <div className="flex justify-center min-h-screen">
-        <div className="flex items-center pt-5">
+      <div className=" min-h-screen">
+        <div>
+          <IoIosArrowBack
+            className="text-[35px] cursor-pointer"
+            onClick={() => router.push("/")}
+          />
+        </div>
+        <div className="flex items-center justify-center">
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="min-w-[550px] bg-gray-800 rounded-3xl"
           >
-            <div className="p-4 space-y-5 ">
-              <h1 className="text-[25px] mb-10 text-center">
+            <div className="p-4 space-y-4 ">
+              <h1 className="text-[25px] mb-10 text-center ">
                 Agrega tu jugador
               </h1>
-              <label
-                htmlFor="name"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Nombre
-                <input
-                  type="text"
-                  {...register("name")}
-                  aria-describedby="helper-text-explanation"
-                  required
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Escribe tu nombre"
-                />
-                <p className="text-red-700">{errors.name?.message}</p>
-              </label>
-              <label
-                htmlFor="height"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Altura
-                <input
-                  type="text"
-                  {...register("height")}
-                  aria-describedby="helper-text-explanation"
-                  required
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Escribe tu nombre"
-                />
-                <p className="text-red-700">{errors.height?.message}</p>
-              </label>
-              <label
-                htmlFor="points"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Puntos
-                <input
-                  value={0}
-                  type="number"
-                  {...register("points")}
-                  aria-describedby="helper-text-explanation"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Escribe tu nombre"
-                />
-                <p className="text-red-700">{errors.points?.message}</p>
-              </label>
-              <label
-                htmlFor="racket"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Raqueta
-                <input
-                  type="text"
-                  {...register("racket")}
-                  aria-describedby="helper-text-explanation"
-                  required
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Escribe tu nombre"
-                />
-                <p className="text-red-700">{errors.racket?.message}</p>
-              </label>
-              <label
-                htmlFor="site"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Lugar en la cancha
-                <input
-                  type="text"
-                  {...register("site")}
-                  aria-describedby="helper-text-explanation"
-                  required
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Escribe tu nombre"
-                />
-                <p className="text-red-700">{errors.site?.message}</p>
-              </label>
-              <label
-                htmlFor="type"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Tipo de jugador
-                <input
-                  type="text"
-                  {...register("type")}
-                  aria-describedby="helper-text-explanation"
-                  required
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Escribe tu nombre"
-                />
-                <p className="text-red-700">{errors.type?.message}</p>
-              </label>
-              <label
-                htmlFor="wins"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Victorias
-                <input
-                  value={0}
-                  type="number"
-                  {...register("wins")}
-                  aria-describedby="helper-text-explanation"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Escribe tu nombre"
-                />
-                <p className="text-red-700">{errors.wins?.message}</p>
-              </label>
+              <div className="flex flex-row justify-center gap-3">
+                <label
+                  htmlFor="name"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Nombre
+                  <input
+                    type="text"
+                    {...register("name")}
+                    aria-describedby="helper-text-explanation"
+                    required
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Escribe tu nombre"
+                  />
+                  <p className="text-red-700">{errors.name?.message}</p>
+                </label>
+                <label
+                  htmlFor="height"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Altura
+                  <input
+                    type="text"
+                    {...register("height")}
+                    aria-describedby="helper-text-explanation"
+                    required
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Escribe tu nombre"
+                  />
+                  <p className="text-red-700">{errors.height?.message}</p>
+                </label>
+              </div>
+              <div className="flex flex-row justify-center gap-3">
+                <label
+                  htmlFor="points"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Puntos
+                  <input
+                    value={0}
+                    type="number"
+                    {...register("points")}
+                    aria-describedby="helper-text-explanation"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Escribe tu nombre"
+                  />
+                  <p className="text-red-700">{errors.points?.message}</p>
+                </label>
+                <label
+                  htmlFor="racket"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Raqueta
+                  <input
+                    type="text"
+                    {...register("racket")}
+                    aria-describedby="helper-text-explanation"
+                    required
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Escribe tu nombre"
+                  />
+                  <p className="text-red-700">{errors.racket?.message}</p>
+                </label>
+              </div>
+
+              <div className="flex flex-row justify-center gap-3">
+                <label
+                  htmlFor="site"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Lugar en la cancha
+                  <input
+                    type="text"
+                    {...register("site")}
+                    aria-describedby="helper-text-explanation"
+                    required
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Escribe tu nombre"
+                  />
+                  <p className="text-red-700">{errors.site?.message}</p>
+                </label>
+                <label
+                  htmlFor="type"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Tipo de jugador
+                  <input
+                    type="text"
+                    {...register("type")}
+                    aria-describedby="helper-text-explanation"
+                    required
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Escribe tu nombre"
+                  />
+                  <p className="text-red-700">{errors.type?.message}</p>
+                </label>
+              </div>
+              <div className="flex flex-row justify-start px-9">
+                <label
+                  htmlFor="wins"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Victorias
+                  <input
+                    value={0}
+                    type="number"
+                    {...register("wins")}
+                    aria-describedby="helper-text-explanation"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Escribe tu nombre"
+                  />
+                  <p className="text-red-700">{errors.wins?.message}</p>
+                </label>
+              </div>
               <div className="w-full text-center">
                 <Button
                   title="Registrar Jugador"

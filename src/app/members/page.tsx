@@ -38,7 +38,7 @@ export default function Members() {
         <Button
           title="Historial"
           types="blue"
-          onClick={() => router.push("/historial")}
+          onClick={() => router.push("/record")}
         />
         <Button
           title="Agregar jugador"
