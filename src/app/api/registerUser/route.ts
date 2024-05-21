@@ -1,4 +1,4 @@
-import { createPool } from "mysql2";
+import { createPool, RowDataPacket } from "mysql2/promise";
 import bcrypt from "bcryptjs";
 
 export async function POST(request: Request) {
@@ -11,33 +11,44 @@ export async function POST(request: Request) {
   });
 
   const body = await request.json();
-
   const { name, mail, password } = body;
 
   const saltRounds = 7;
   const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-  const query = "INSERT INTO users(name,email,password) VALUES (?,?,?) ";
-  const values = [name, mail, hashedPassword];
+  const queryCheck = "SELECT COUNT(*) as count FROM users WHERE email = ?";
+  const queryInsert =
+    "INSERT INTO users(name, email, password) VALUES (?, ?, ?)";
+  const valuesCheck = [mail];
+  const valuesInsert = [name, mail, hashedPassword];
 
   try {
-    const results = await new Promise((resolve, reject) => {
-      connection.query(query, values, (error, results) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(results);
-        }
-      });
-    });
-    return Response.json({
-      message: "Usuario creado correctamente",
-      results,
-    });
+    const [rows] = await connection.query<RowDataPacket[]>(
+      queryCheck,
+      valuesCheck
+    );
+    const emailExists = rows[0].count > 0;
+
+    if (emailExists) {
+      return new Response(
+        JSON.stringify({
+          message: "El correo ya está en uso.",
+        })
+      );
+    }
+    const [results] = await connection.query(queryInsert, valuesInsert);
+
+    return new Response(
+      JSON.stringify({
+        results,
+      })
+    );
   } catch (error) {
     console.error("Error executing query", error);
-    return Response.json({ error });
+    return new Response(
+      JSON.stringify({ error: "Error ejecutando la consulta" })
+    );
   } finally {
-    connection.end();
+    await connection.end();
   }
 }

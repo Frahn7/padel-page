@@ -10,6 +10,7 @@ import { Button } from "../Components/ui/Button";
 import { IoIosArrowBack } from "react-icons/io";
 import { Spiner } from "../Components/ui/Spiner";
 import { ProtectedPage } from "../Components/Protected";
+import { CiLogout } from "react-icons/ci";
 
 export default function Members() {
   const [filterMembers, setFilterMembers] = useState("");
@@ -41,18 +42,25 @@ export default function Members() {
           member.height.toUpperCase().includes(filterMembers.toUpperCase()) ||
           member.racket.toUpperCase().includes(filterMembers.toUpperCase())
       );
+
+  const logOut = () => {
+    localStorage.removeItem("Token");
+    router.push("/auth/login");
+  };
+
   return (
     <div className="min-h-screen px-4 py-4">
       <IoIosArrowBack
         className="text-[35px] cursor-pointer"
         onClick={() => router.push("/")}
       />
-      <div className="flex justify-end  px-3 text-[18px]">
+      <div className="flex justify-end  px-3 text-[18px] gap-3">
         <Button
           title="Historial"
           types="blue"
           onClick={() => router.push("/record")}
         />
+
         {admin === "no" ? null : (
           <Button
             title="Agregar jugador"
@@ -60,6 +68,10 @@ export default function Members() {
             onClick={() => router.push("/add-player")}
           />
         )}
+        <CiLogout
+          className="text-[40px] border-[1px] rounded-lg cursor-pointer border-red-500 text-red-500"
+          onClick={() => logOut()}
+        />
       </div>
       <div className="mt-8 text-center text-[30px]  font-semibold text-gray-500">
         <p>Miembros del grupo</p>

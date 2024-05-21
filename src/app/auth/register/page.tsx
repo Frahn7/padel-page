@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Button } from "@/app/Components/ui/Button";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 interface Inputs {
   name: string;
@@ -64,6 +65,7 @@ export default function Register() {
     resolver: zodResolver(Schema),
   });
 
+  const [error, setError] = useState("");
   const router = useRouter();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
@@ -81,7 +83,11 @@ export default function Register() {
       body: JSON.stringify(user),
     })
       .then((res) => res.json())
-      .then(() => router.push("/auth/login"))
+      .then((data) => {
+        if (data.message) {
+          setError(data.message);
+        } else router.push("/auth/login");
+      })
       .catch((e) => {
         console.log(e);
       });
@@ -123,6 +129,7 @@ export default function Register() {
               {...register("mail")}
             />
             <p className="text-red-600">{errors.mail?.message}</p>
+            <p className="text-red-600">{error}</p>
           </div>
 
           <div>
