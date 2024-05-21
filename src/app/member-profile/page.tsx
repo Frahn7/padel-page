@@ -12,7 +12,6 @@ import { FcCancel } from "react-icons/fc";
 import { ProtectedPage } from "../Components/Protected";
 
 function Profile() {
-  const token = localStorage.getItem("Token");
   const params = useSearchParams();
   const id = params.get("id");
   const router = useRouter();
@@ -24,8 +23,11 @@ function Profile() {
     return <Spiner />;
   }
 
-  if (!token) {
-    return <ProtectedPage />;
+  if (typeof localStorage !== "undefined") {
+    const token = localStorage.getItem("Token");
+    if (!token) {
+      return <ProtectedPage />;
+    }
   }
 
   return (

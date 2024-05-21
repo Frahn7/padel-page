@@ -5,11 +5,9 @@ import { Matches } from "../Components/Matches";
 import { useRouter } from "next/navigation";
 import { ProtectedPage } from "../Components/Protected";
 import { useState } from "react";
-import { FaExpandArrowsAlt } from "react-icons/fa";
 
 export default function Historial() {
   const router = useRouter();
-  const token = localStorage.getItem("Token");
 
   const [mayo, setMayo] = useState(false);
 
@@ -19,10 +17,12 @@ export default function Historial() {
   const Match3 = ["Fran", "Fabra", "Tomi", "Thiago"];
   const Match4 = ["Tomi", "Fran", "Thiago", "Fabra"];
 
-  if (!token) {
-    return <ProtectedPage />;
+  if (typeof localStorage !== "undefined") {
+    const token = localStorage.getItem("Token");
+    if (!token) {
+      return <ProtectedPage />;
+    }
   }
-
   return (
     <div className="px-4 flex justify-center flex-col py-4 ">
       <IoIosArrowBack

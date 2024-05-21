@@ -19,7 +19,6 @@ type Inputs = {
 };
 
 export default function AddPlayer() {
-  const token = localStorage.getItem("Token");
   const router = useRouter();
 
   const userSchema = z.object({
@@ -87,8 +86,11 @@ export default function AddPlayer() {
       });
   };
 
-  if (!token) {
-    return <ProtectedPage />;
+  if (typeof localStorage !== "undefined") {
+    const token = localStorage.getItem("Token");
+    if (!token) {
+      return <ProtectedPage />;
+    }
   }
 
   return (

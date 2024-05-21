@@ -15,7 +15,6 @@ export default function Members() {
   const [filterMembers, setFilterMembers] = useState("");
   const { loading, players } = useMembersGroup();
   const router = useRouter();
-  const token = localStorage.getItem("Token");
 
   const Players = !filterMembers
     ? players
@@ -30,8 +29,11 @@ export default function Members() {
     return <Spiner />;
   }
 
-  if (!token) {
-    return <ProtectedPage />;
+  if (typeof localStorage !== "undefined") {
+    const token = localStorage.getItem("Token");
+    if (!token) {
+      return <ProtectedPage />;
+    }
   }
 
   return (
