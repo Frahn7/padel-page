@@ -9,11 +9,13 @@ import Image from "next/image";
 import { Button } from "../Components/ui/Button";
 import { IoIosArrowBack } from "react-icons/io";
 import { Spiner } from "../Components/ui/Spiner";
+import { ProtectedPage } from "../Components/Protected";
 
 export default function Members() {
   const [filterMembers, setFilterMembers] = useState("");
   const { loading, players } = useMembersGroup();
   const router = useRouter();
+  const token = localStorage.getItem("Token");
 
   const Players = !filterMembers
     ? players
@@ -26,6 +28,10 @@ export default function Members() {
 
   if (loading) {
     return <Spiner />;
+  }
+
+  if (!token) {
+    return <ProtectedPage />;
   }
 
   return (

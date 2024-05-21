@@ -6,6 +6,7 @@ import { Button } from "../Components/ui/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { IoIosArrowBack } from "react-icons/io";
+import { ProtectedPage } from "../Components/Protected";
 
 type Inputs = {
   name: string;
@@ -18,6 +19,7 @@ type Inputs = {
 };
 
 export default function AddPlayer() {
+  const token = localStorage.getItem("Token");
   const router = useRouter();
 
   const userSchema = z.object({
@@ -85,13 +87,17 @@ export default function AddPlayer() {
       });
   };
 
+  if (!token) {
+    return <ProtectedPage />;
+  }
+
   return (
     <div>
       <div className=" min-h-screen">
         <div>
           <IoIosArrowBack
             className="text-[35px] cursor-pointer"
-            onClick={() => router.push("/")}
+            onClick={() => router.push("/members")}
           />
         </div>
         <div className="flex items-center justify-center">

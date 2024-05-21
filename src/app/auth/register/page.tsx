@@ -90,7 +90,7 @@ export default function Register() {
   return (
     <div className="min-h-screen py-4 flex flex-col items-center justify-center text-center">
       <section className="bg-gray-700 dark:bg-gray-800 p-7 rounded-lg">
-        <h1 className="text-[25px] ">Registrese</h1>
+        <h1 className="text-[25px] ">Registrate!</h1>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="space-y-4 mt-7 min-w-[400px]"
@@ -161,7 +161,7 @@ export default function Register() {
         </form>
         <p
           className="text-center mt-4 underline cursor-pointer"
-          onClick={() => router.push("/auth/register")}
+          onClick={() => router.push("/auth/login")}
         >
           Ya tienes cuenta?, Inicia sesion
         </p>

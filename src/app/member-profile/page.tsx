@@ -9,8 +9,10 @@ import { FaRegEdit } from "react-icons/fa";
 import { Spiner } from "../Components/ui/Spiner";
 import { Edits } from "../Components/Edits";
 import { FcCancel } from "react-icons/fc";
+import { ProtectedPage } from "../Components/Protected";
 
 function Profile() {
+  const token = localStorage.getItem("Token");
   const params = useSearchParams();
   const id = params.get("id");
   const router = useRouter();
@@ -20,6 +22,10 @@ function Profile() {
 
   if (loading) {
     return <Spiner />;
+  }
+
+  if (!token) {
+    return <ProtectedPage />;
   }
 
   return (

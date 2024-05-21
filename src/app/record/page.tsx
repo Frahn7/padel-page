@@ -3,14 +3,20 @@
 import { IoIosArrowBack } from "react-icons/io";
 import { Matches } from "../Components/Matches";
 import { useRouter } from "next/navigation";
+import { ProtectedPage } from "../Components/Protected";
 
 export default function Historial() {
   const router = useRouter();
+  const token = localStorage.getItem("Token");
 
   const Match0 = ["Thiago", "Tomi", "Fran", "Fabra"];
   const Match1 = ["Tomi", "Fran", "Thiago", "Fabra"];
   const Match2 = ["Fran", "Thiago", "Tomi", "Fabra"];
   const Match3 = ["Fran", "Fabra", "Tomi", "Thiago"];
+
+  if (!token) {
+    return <ProtectedPage />;
+  }
 
   return (
     <div className="px-4 flex justify-center flex-col py-4 ">
