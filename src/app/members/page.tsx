@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Card } from "../Components/Card";
 import useMembersGroup from "../hooks/useMembersGroup";
 import { InputSearch } from "../Components/ui/InputSearch";
@@ -14,7 +14,24 @@ import { ProtectedPage } from "../Components/Protected";
 export default function Members() {
   const [filterMembers, setFilterMembers] = useState("");
   const { loading, players } = useMembersGroup();
+  const [admin, setAdmin] = useState("no");
   const router = useRouter();
+
+  if (loading) {
+    return <Spiner />;
+  }
+
+  if (typeof localStorage !== "undefined") {
+    const token = localStorage.getItem("Token");
+
+    fetch(`/api/getAdmins?token=${token}`)
+      .then((res) => res.json())
+      .then((data) => setAdmin(data.results[0].admin));
+
+    if (!token) {
+      return <ProtectedPage />;
+    }
+  }
 
   const Players = !filterMembers
     ? players
@@ -24,18 +41,6 @@ export default function Members() {
           member.height.toUpperCase().includes(filterMembers.toUpperCase()) ||
           member.racket.toUpperCase().includes(filterMembers.toUpperCase())
       );
-
-  if (loading) {
-    return <Spiner />;
-  }
-
-  if (typeof localStorage !== "undefined") {
-    const token = localStorage.getItem("Token");
-    if (!token) {
-      return <ProtectedPage />;
-    }
-  }
-
   return (
     <div className="min-h-screen px-4 py-4">
       <IoIosArrowBack
@@ -48,11 +53,13 @@ export default function Members() {
           types="blue"
           onClick={() => router.push("/record")}
         />
-        <Button
-          title="Agregar jugador"
-          types="dark"
-          onClick={() => router.push("/add-player")}
-        />
+        {admin === "no" ? null : (
+          <Button
+            title="Agregar jugador"
+            types="dark"
+            onClick={() => router.push("/add-player")}
+          />
+        )}
       </div>
       <div className="mt-8 text-center text-[30px]  font-semibold text-gray-500">
         <p>Miembros del grupo</p>
