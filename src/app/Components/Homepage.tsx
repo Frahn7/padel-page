@@ -27,7 +27,7 @@ export default function Homepage() {
           <Button
             title="Vamos!"
             types="default"
-            onClick={() => router.push("/members")}
+            onClick={() => router.push("/auth/login")}
           />
         </div>
       </div>
