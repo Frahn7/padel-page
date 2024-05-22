@@ -9,7 +9,6 @@ import Image from "next/image";
 import { Button } from "../Components/ui/Button";
 import { IoIosArrowBack } from "react-icons/io";
 import { Spiner } from "../Components/ui/Spiner";
-import { ProtectedPage } from "../Components/Protected";
 import { CiLogout } from "react-icons/ci";
 
 export default function Members() {
@@ -18,20 +17,21 @@ export default function Members() {
   const [admin, setAdmin] = useState("no");
   const router = useRouter();
 
-  if (loading) {
-    return <Spiner />;
-  }
-
   if (typeof localStorage !== "undefined") {
     const token = localStorage.getItem("Token");
 
     fetch(`/api/getAdmins?token=${token}`)
       .then((res) => res.json())
-      .then((data) => setAdmin(data.results[0].admin));
+      .then((data) => setAdmin(data.results[0].admin))
+      .then(() => localStorage.setItem("Admin", admin));
 
     if (!token) {
-      return <ProtectedPage />;
+      router.push("/auth/login");
     }
+  }
+
+  if (loading) {
+    return <Spiner />;
   }
 
   const Players = !filterMembers

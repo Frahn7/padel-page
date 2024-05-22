@@ -9,7 +9,6 @@ import { FaRegEdit } from "react-icons/fa";
 import { Spiner } from "../Components/ui/Spiner";
 import { Edits } from "../Components/Edits";
 import { FcCancel } from "react-icons/fc";
-import { ProtectedPage } from "../Components/Protected";
 import { MdDelete } from "react-icons/md";
 
 function Profile() {
@@ -19,21 +18,17 @@ function Profile() {
   const { loading, user } = useGetProfile({ id: id ? +id : 1 });
   const profile = user[0];
   const [edits, setEdits] = useState(false);
-  const [admin, setAdmin] = useState("no");
-
-  if (loading) {
-    return <Spiner />;
-  }
+  const [admin, setAdmin] = useState(localStorage.getItem("Admin"));
 
   if (typeof localStorage !== "undefined") {
     const token = localStorage.getItem("Token");
-    fetch(`/api/getAdmins?token=${token}`)
-      .then((res) => res.json())
-      .then((data) => setAdmin(data.results[0].admin));
-
     if (!token) {
-      return <ProtectedPage />;
+      router.push("/auth/login");
     }
+  }
+
+  if (loading) {
+    return <Spiner />;
   }
 
   const deleteUser = (id: any) => {

@@ -3,14 +3,12 @@
 import { IoIosArrowBack } from "react-icons/io";
 import { Matches } from "../Components/Matches";
 import { useRouter } from "next/navigation";
-import { ProtectedPage } from "../Components/Protected";
 import { useState } from "react";
 
 export default function Historial() {
   const router = useRouter();
 
   const [mayo, setMayo] = useState(false);
-
   const Match0 = ["Thiago", "Tomi", "Fran", "Fabra"];
   const Match1 = ["Tomi", "Fran", "Thiago", "Fabra"];
   const Match2 = ["Fran", "Thiago", "Tomi", "Fabra"];
@@ -20,9 +18,10 @@ export default function Historial() {
   if (typeof localStorage !== "undefined") {
     const token = localStorage.getItem("Token");
     if (!token) {
-      return <ProtectedPage />;
+      router.push("/auth/login");
     }
   }
+
   return (
     <div className="px-4 flex justify-center flex-col py-4 ">
       <IoIosArrowBack
@@ -40,7 +39,7 @@ export default function Historial() {
           {mayo ? "Mayo < " : "Mayo > "}
         </p>
         {mayo ? (
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col space-y-2">
             <Matches
               cancha="Calzada"
               fecha="11-05-2024"

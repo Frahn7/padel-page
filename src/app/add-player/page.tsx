@@ -6,7 +6,6 @@ import { Button } from "../Components/ui/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { IoIosArrowBack } from "react-icons/io";
-import { ProtectedPage } from "../Components/Protected";
 
 type Inputs = {
   name: string;
@@ -89,7 +88,7 @@ export default function AddPlayer() {
   if (typeof localStorage !== "undefined") {
     const token = localStorage.getItem("Token");
     if (!token) {
-      return <ProtectedPage />;
+      router.push("/auth/login");
     }
   }
 
