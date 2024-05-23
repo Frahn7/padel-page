@@ -46,7 +46,7 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("Error executing query", error);
     return new Response(
-      JSON.stringify({ error: "Error ejecutando la consulta" })
+      JSON.stringify({ error, message: "Error al crear usuario" })
     );
   } finally {
     await connection.end();
