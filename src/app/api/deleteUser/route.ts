@@ -12,19 +12,35 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
 
   const id = searchParams.get("id");
+  const token = searchParams.get("token");
 
-  const query = "DELETE FROM `data_users` WHERE id=?";
+  const queryDelete = "DELETE FROM `data_users` WHERE id=?";
+
+  const query = "SELECT admin FROM users WHERE token=?";
   try {
-    const results = await new Promise((resolve, reject) => {
-      connection.query(query, id, (error, results) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(results);
-        }
+    const isAdmin: any = await new Promise((resolve, reject) => {
+      connection.query(query, token, (err, res) => {
+        if (err) {
+          reject(err);
+        } else resolve(res);
       });
     });
-    return Response.json({ results });
+
+    if (isAdmin[0].admin === "si") {
+      const results = await new Promise((resolve, reject) => {
+        connection.query(queryDelete, id, (error, results) => {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(results);
+          }
+        });
+      });
+      return Response.json({ results });
+    } else
+      return Response.json({
+        message: "No tiene permisos para realizar esta acccion",
+      });
   } catch (error) {
     console.error("Error executing query", error);
     return Response.json({ error });

@@ -19,7 +19,7 @@ function Profile() {
   const profile = user[0];
   const [edits, setEdits] = useState(false);
   const [admin, setAdmin] = useState(localStorage.getItem("Admin"));
-
+  const [adminError, setAdminError] = useState("");
   if (typeof localStorage !== "undefined") {
     const token = localStorage.getItem("Token");
     if (!token) {
@@ -30,9 +30,9 @@ function Profile() {
   if (loading) {
     return <Spiner />;
   }
-
   const deleteUser = (id: any) => {
-    fetch(`/api/deleteUser?id=${id}`)
+    const token = localStorage.getItem("Token");
+    fetch(`/api/deleteUser?id=${id}&token=${token}`)
       .then((res) => res.json())
       .then((data) => console.log(data))
       .finally(() => router.push("/members"));
@@ -129,6 +129,9 @@ function Profile() {
           </div>
         )}
       </span>
+      <div className="flex justify-center">
+        <p className="text-red-700">{adminError}</p>
+      </div>
     </div>
   );
 }

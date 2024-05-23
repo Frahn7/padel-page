@@ -117,12 +117,7 @@ export default function Login() {
 
           <p className="text-red-700">{errors.password?.message}</p>
           <p className="text-red-700">{Error ? Error : null}</p>
-          <Button
-            id="button-login"
-            title="Iniciar sesion"
-            type="submit"
-            types="blue"
-          />
+          <Button title="Iniciar sesion" type="submit" types="blue" />
         </form>
         <p
           className="text-center mt-4 underline cursor-pointer"

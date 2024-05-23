@@ -6,6 +6,7 @@ import { Button } from "../Components/ui/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { IoIosArrowBack } from "react-icons/io";
+import { useState } from "react";
 
 type Inputs = {
   name: string;
@@ -19,6 +20,8 @@ type Inputs = {
 
 export default function AddPlayer() {
   const router = useRouter();
+
+  const [error, seterror] = useState("");
 
   const userSchema = z.object({
     name: z.string().min(5, { message: "Minimo 5 caracteres" }).max(50, {
@@ -62,6 +65,8 @@ export default function AddPlayer() {
   });
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
+    const token = localStorage.getItem("Token");
+
     fetch("/api/insertUser", {
       method: "POST",
       headers: {
@@ -75,11 +80,16 @@ export default function AddPlayer() {
         site: data.site,
         wins: data.wins,
         type: data.type,
+        token: token,
       }),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data))
-      .finally(() => router.push("/members"))
+      .then((data) => {
+        if (data.message === "No tiene permisos de administrador") {
+          seterror(data.message);
+        }
+      })
+      // .finally(() => router.push("/members"))
       .catch((error) => {
         console.error("Error:", error);
       });
@@ -224,6 +234,7 @@ export default function AddPlayer() {
                   <p className="text-red-700">{errors.wins?.message}</p>
                 </label>
               </div>
+              <p className="text-red-700 text-center">{error}</p>
               <div className="w-full text-center">
                 <Button
                   title="Registrar Jugador"
