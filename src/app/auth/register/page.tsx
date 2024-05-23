@@ -65,7 +65,10 @@ export default function Register() {
     resolver: zodResolver(Schema),
   });
 
-  const [error, setError] = useState("");
+  const [error, setError] = useState({
+    email: "",
+    backend: "",
+  });
   const router = useRouter();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
@@ -84,8 +87,18 @@ export default function Register() {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.message) {
-          setError(data.message);
+        if (data.message === "El correo ya está en uso") {
+          const dataError = {
+            email: data.message,
+            backend: "",
+          };
+          setError(dataError);
+        } else if (data.message === "Error al crear usuario") {
+          const dataError = {
+            email: "",
+            backend: data.message,
+          };
+          setError(dataError);
         } else router.push("/auth/login");
       })
       .catch((e) => {
@@ -110,7 +123,7 @@ export default function Register() {
             </label>
             <input
               type="text"
-              className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 w-[300px] focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 w-full focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               {...register("name")}
             />
             <p className="text-red-600">{errors.name?.message}</p>
@@ -124,12 +137,12 @@ export default function Register() {
               Email
             </label>
             <input
-              className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 w-[300px] focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 w-full focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               type="email"
               {...register("mail")}
             />
             <p className="text-red-600">{errors.mail?.message}</p>
-            <p className="text-red-600">{error}</p>
+            <p className="text-red-600">{error.email}</p>
           </div>
 
           <div>
@@ -166,6 +179,7 @@ export default function Register() {
             <Button title="Registarse" type="submit" types="blue" />
           </div>
         </form>
+        <p className="text-red-600">{error.backend}</p>
         <p
           className="text-center mt-4 underline cursor-pointer"
           onClick={() => router.push("/auth/login")}

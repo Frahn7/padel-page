@@ -32,7 +32,7 @@ export async function POST(request: Request) {
     if (emailExists) {
       return new Response(
         JSON.stringify({
-          message: "El correo ya está en uso.",
+          message: "El correo ya está en uso",
         })
       );
     }
