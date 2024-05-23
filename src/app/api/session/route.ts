@@ -38,6 +38,16 @@ export async function POST(request: Request) {
         }
       });
     });
+
+    if (results.length === 0) {
+      return new Response(
+        JSON.stringify({
+          message: "no hay correo registrado",
+        }),
+        { status: 404 }
+      );
+    }
+
     const passwordHash = results[0].password;
     const isMatch = await bcrypt.compare(password, passwordHash);
 
@@ -63,7 +73,7 @@ export async function POST(request: Request) {
     }
   } catch (error) {
     console.error("Error executing query", error);
-    return Response.json({ error });
+    return Response.json(error);
   } finally {
     connection.end();
   }

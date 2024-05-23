@@ -57,6 +57,11 @@ export default function Login() {
           setError("Las contraseñas no coinciden");
           return;
         }
+        if (data.message === "no hay correo registrado") {
+          setError("No hay correo registrado");
+          return;
+        }
+
         if (data.message === true) {
           const newToken = data.token;
           const storedToken = localStorage.getItem("Token");
@@ -112,7 +117,12 @@ export default function Login() {
 
           <p className="text-red-700">{errors.password?.message}</p>
           <p className="text-red-700">{Error ? Error : null}</p>
-          <Button title="Iniciar sesion" type="submit" types="blue" />
+          <Button
+            id="button-login"
+            title="Iniciar sesion"
+            type="submit"
+            types="blue"
+          />
         </form>
         <p
           className="text-center mt-4 underline cursor-pointer"
