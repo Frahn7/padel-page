@@ -6,6 +6,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { Button } from "@/app/Components/ui/Button";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { Spiner } from "@/app/Components/ui/Spiner";
 
 interface Inputs {
   name: string;
@@ -14,7 +15,7 @@ interface Inputs {
   repeatPassword: string;
 }
 
-const Schema = z
+const Schema: any = z
   .object({
     name: z.string().min(1, { message: "Minimo 1 caracter" }).max(50, {
       message: "Maximo 50 caracteres",
@@ -70,6 +71,7 @@ export default function Register() {
     backend: "",
   });
   const router = useRouter();
+  const [active, setActive] = useState(false);
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     const user = {
@@ -77,6 +79,8 @@ export default function Register() {
       name: data.name,
       password: data.password,
     };
+
+    setActive(true);
 
     fetch("/api/registerUser", {
       method: "POST",
@@ -93,12 +97,14 @@ export default function Register() {
             backend: "",
           };
           setError(dataError);
+          setActive(false);
         } else if (data.message === "Error al crear usuario") {
           const dataError = {
             email: "",
             backend: data.message,
           };
           setError(dataError);
+          setActive(false);
         } else router.push("/auth/login");
       })
       .catch((e) => {
@@ -176,7 +182,11 @@ export default function Register() {
           </div>
 
           <div className="flex justify-center">
-            <Button title="Registarse" type="submit" types="blue" />
+            {active ? (
+              <Spiner />
+            ) : (
+              <Button title="Iniciar sesion" type="submit" types="blue" />
+            )}
           </div>
         </form>
         <p className="text-red-600">{error.backend}</p>

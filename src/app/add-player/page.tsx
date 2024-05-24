@@ -89,7 +89,7 @@ export default function AddPlayer() {
           seterror(data.message);
         }
       })
-      // .finally(() => router.push("/members"))
+      .finally(() => router.push("/members"))
       .catch((error) => {
         console.error("Error:", error);
       });

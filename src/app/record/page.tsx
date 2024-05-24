@@ -14,6 +14,8 @@ export default function Historial() {
   const Match2 = ["Fran", "Thiago", "Tomi", "Fabra"];
   const Match3 = ["Fran", "Fabra", "Tomi", "Thiago"];
   const Match4 = ["Tomi", "Fran", "Thiago", "Fabra"];
+  const Match5 = ["Fran", "Thiago", "Tomi", "Fabra"];
+  const Match6 = ["Tomi", "Thiago", "Fran", "Fabra"];
 
   if (typeof localStorage !== "undefined") {
     const token = localStorage.getItem("Token");
@@ -80,6 +82,24 @@ export default function Historial() {
               game1="6-3"
               game2="6-2"
               sets="2"
+            />
+            <Matches
+              cancha="Super 33"
+              fecha="23-05-2024"
+              jugadores={Match5}
+              game1="6-2"
+              game2="6-4"
+              game3="6-1"
+              sets="2-1"
+            />
+            <Matches
+              cancha="Super 33"
+              fecha="23-05-2024"
+              jugadores={Match6}
+              game1="6-4"
+              game2="6-0"
+              game3="6-1"
+              sets="2-1"
             />
           </div>
         ) : null}

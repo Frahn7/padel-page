@@ -10,6 +10,7 @@ import { Spiner } from "../Components/ui/Spiner";
 import { Edits } from "../Components/Edits";
 import { FcCancel } from "react-icons/fc";
 import { MdDelete } from "react-icons/md";
+import { Modal } from "../Components/Modal";
 
 function Profile() {
   const params = useSearchParams();
@@ -20,6 +21,9 @@ function Profile() {
   const [edits, setEdits] = useState(false);
   const [admin, setAdmin] = useState(localStorage.getItem("Admin"));
   const [adminError, setAdminError] = useState("");
+
+  const [modal, setModal] = useState(false);
+
   if (typeof localStorage !== "undefined") {
     const token = localStorage.getItem("Token");
     if (!token) {
@@ -30,13 +34,6 @@ function Profile() {
   if (loading) {
     return <Spiner />;
   }
-  const deleteUser = (id: any) => {
-    const token = localStorage.getItem("Token");
-    fetch(`/api/deleteUser?id=${id}&token=${token}`)
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .finally(() => router.push("/members"));
-  };
 
   return (
     <div className="pl-4 w-full py-4 min-h-screen">
@@ -57,13 +54,19 @@ function Profile() {
               onClick={() => setEdits(!edits)}
             />
             <MdDelete
-              onClick={() => deleteUser(id)}
+              onClick={() => setModal(true)}
               className="text-[30px] text-red-600 cursor-pointer"
             />
           </div>
         )}
       </div>
 
+      <Modal
+        name={profile.name}
+        open={modal}
+        openChange={setModal}
+        id={profile.id}
+      />
       <span>
         <div className="flex justify-center">
           <Image

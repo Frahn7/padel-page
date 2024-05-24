@@ -36,6 +36,8 @@ export const Edits = ({ profile }: PropsEdits) => {
   const handleSumbit = (e: any) => {
     e.preventDefault();
 
+    const token = localStorage.getItem("Token");
+
     const ProfileUpdate = {
       height: edits.height === "" ? profile.height : edits.height,
       points: edits.points === "" ? profile.points : edits.points,
@@ -44,6 +46,7 @@ export const Edits = ({ profile }: PropsEdits) => {
       site: edits.site === "" ? profile.site : edits.site,
       wins: edits.wins === "" ? profile.wins : edits.wins,
       id: profile.id,
+      token: token,
     };
 
     fetch("/api/editUser", {

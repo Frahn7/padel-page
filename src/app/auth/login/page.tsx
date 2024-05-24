@@ -6,6 +6,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { Button } from "@/app/Components/ui/Button";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { Spiner } from "@/app/Components/ui/Spiner";
 
 interface Inputs {
   email: string;
@@ -14,8 +15,8 @@ interface Inputs {
 
 export default function Login() {
   const router = useRouter();
-
   const [Error, setError] = useState("");
+  const [active, setActive] = useState(false);
 
   const schema = z.object({
     email: z
@@ -46,6 +47,8 @@ export default function Login() {
       password: data.password,
     };
 
+    setActive(true);
+
     fetch("/api/session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -55,10 +58,12 @@ export default function Login() {
       .then((data) => {
         if (data.message === "Las contraseñas no coinciden") {
           setError("Las contraseñas no coinciden");
+          setActive(false);
           return;
         }
         if (data.message === "no hay correo registrado") {
           setError("No hay correo registrado");
+          setActive(false);
           return;
         }
 
@@ -117,7 +122,11 @@ export default function Login() {
 
           <p className="text-red-700">{errors.password?.message}</p>
           <p className="text-red-700">{Error ? Error : null}</p>
-          <Button title="Iniciar sesion" type="submit" types="blue" />
+          {active ? (
+            <Spiner />
+          ) : (
+            <Button title="Iniciar sesion" type="submit" types="blue" />
+          )}
         </form>
         <p
           className="text-center mt-4 underline cursor-pointer"
