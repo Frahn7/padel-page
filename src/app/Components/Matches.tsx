@@ -8,6 +8,7 @@ interface PropsPartidos {
   game2: string;
   game3?: string;
   sets: string;
+  url?: string;
 }
 
 export const Matches = ({
@@ -18,13 +19,16 @@ export const Matches = ({
   game2,
   game3,
   sets,
+  url,
 }: PropsPartidos) => {
   const PuntosSets = sets.split("-");
 
   return (
     <div className="min-h-[130px] w-[400px] text-white bg-black border-2 border-white rounded-2xl flex flex-row gap-3 justify-between px-4 items-center pr-[20px]">
       <div className="w-[35%] text-center pr-9">
-        <div className="pb-3">{cancha}</div>
+        <a href={url} target="_blank" className="cursor-pointer underline">
+          <div className="pb-3">{cancha}</div>
+        </a>
         <div className="text-[13px]">{fecha}</div>
       </div>
       <div className="flex flex-col pr-3">

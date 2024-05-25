@@ -63,9 +63,9 @@ export const Modal = ({ name, open, openChange, id }: PropsModal) => {
               >
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
                 />
               </svg>
