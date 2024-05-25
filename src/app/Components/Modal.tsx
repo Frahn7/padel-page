@@ -1,11 +1,11 @@
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React from "react";
 
 interface PropsModal {
-  name: string;
+  name?: string;
   open: boolean;
   openChange: (e: boolean) => void;
-  id: number;
+  id?: number;
 }
 
 export const Modal = ({ name, open, openChange, id }: PropsModal) => {

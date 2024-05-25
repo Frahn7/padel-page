@@ -22,7 +22,7 @@ export const Matches = ({
   const PuntosSets = sets.split("-");
 
   return (
-    <div className="min-h-[80px] w-[400px] text-white bg-black border-2 border-white rounded-2xl flex flex-row gap-3 justify-between px-4 items-center pr-[20px]">
+    <div className="min-h-[130px] w-[400px] text-white bg-black border-2 border-white rounded-2xl flex flex-row gap-3 justify-between px-4 items-center pr-[20px]">
       <div className="w-[35%] text-center pr-9">
         <div className="pb-3">{cancha}</div>
         <div className="text-[13px]">{fecha}</div>
