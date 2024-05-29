@@ -84,8 +84,8 @@ function Profile() {
         {edits ? (
           <Edits profile={profile} />
         ) : (
-          <div className="text-[22px] mt-4 font-semibold px-3 text-gray-400 py-5 space-y-3">
-            <div className="flex flex-row justify-between px-5 ">
+          <div className="text-[22px] mt-4 font-semibold px-3 text-gray-400 py-5 space-y-3 [text-align-last:center]">
+            <div className="flex flex-col md:flex-row md:justify-between px-5 ">
               <p>
                 Altura:{" "}
                 <span className="text-white text-[19px]">
@@ -101,7 +101,7 @@ function Profile() {
                 </span>
               </p>
             </div>
-            <div className="flex flex-row justify-between px-5 ">
+            <div className="flex flex-col md:flex-row md:justify-between px-5 ">
               <p>
                 Paleta:{" "}
                 <span className="text-white text-[19px]">
@@ -115,7 +115,7 @@ function Profile() {
                 </span>
               </p>
             </div>
-            <div className="flex flex-row justify-between px-5 ">
+            <div className="flex flex-col md:flex-row md:justify-between px-5 ">
               <p>
                 Tipo de jugador:{" "}
                 <span className="text-white text-[19px]">

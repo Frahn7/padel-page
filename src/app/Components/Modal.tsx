@@ -26,7 +26,7 @@ export const Modal = ({ name, open, openChange, id }: PropsModal) => {
       <div
         id="popup-modal"
         tabIndex={-1}
-        className="absolute top-[20%] left-[35%]"
+        className="absolute md:top-[20%] md:left-[35%]"
       >
         <div className="relative p-4 w-full max-w-md max-h-full">
           <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">

@@ -65,9 +65,9 @@ export const Edits = ({ profile }: PropsEdits) => {
 
   return (
     <form onSubmit={handleSumbit}>
-      <div className="text-[20px] font-semibold px-4 py-5 space-y-4">
-        <div className="flex flex-row justify-between px-4">
-          <p className=" text-gray-400">
+      <div className="text-[20px] font-semibold px-4 py-5 space-y-4 [text-align-last:center]">
+        <div className="flex flex-col md:flex-row justify-between px-4">
+          <p className=" text-gray-400 sm:flex sm:flex-col">
             Altura:{" "}
             <input
               placeholder="Actualizar altura"
@@ -77,7 +77,7 @@ export const Edits = ({ profile }: PropsEdits) => {
               name="height"
             />
           </p>
-          <p className=" text-gray-400">
+          <p className=" text-gray-400 sm:flex sm:flex-col">
             Puntos:{" "}
             <input
               placeholder="Actualizar puntos"
@@ -88,8 +88,8 @@ export const Edits = ({ profile }: PropsEdits) => {
             />
           </p>
         </div>
-        <div className="flex flex-row justify-between px-4">
-          <p className=" text-gray-400">
+        <div className="flex flex-col md:flex-row md:justify-between px-4">
+          <p className=" text-gray-400 sm:flex sm:flex-col">
             Paleta:{" "}
             <input
               placeholder="Actualizar paleta"
@@ -99,7 +99,7 @@ export const Edits = ({ profile }: PropsEdits) => {
               name="raquet"
             />
           </p>
-          <p className=" text-gray-400">
+          <p className=" text-gray-400 sm:flex sm:flex-col">
             Sitio en la cancha:
             <input
               placeholder="Actualizar sitio"
@@ -110,8 +110,8 @@ export const Edits = ({ profile }: PropsEdits) => {
             />
           </p>
         </div>
-        <div className="flex flex-row justify-between px-4">
-          <p className=" text-gray-400">
+        <div className="flex flex-col md:flex-row md:justify-between px-4">
+          <p className=" text-gray-400 sm:flex sm:flex-col">
             Tipo de jugador:{" "}
             <input
               placeholder="Actualizar tipo"
@@ -121,7 +121,7 @@ export const Edits = ({ profile }: PropsEdits) => {
               name="type"
             />
           </p>
-          <p className=" text-gray-400">
+          <p className=" text-gray-400 sm:flex sm:flex-col">
             Victorias:
             <input
               placeholder="Actualizar victorias"
