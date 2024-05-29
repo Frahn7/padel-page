@@ -18,7 +18,7 @@ export const Card = ({
 }: PropsCard) => {
   return (
     <div
-      className="px-4 flex flex-row gap-3 w-[30%] border-2 border-blue-600 rounded-xl cursor-pointer hover:border-blue-300 bg-gray-800 hover:bg-gray-700"
+      className="px-4 flex flex-row gap-3 md:w-[30%] border-2 border-blue-600 rounded-xl cursor-pointer hover:border-blue-300 bg-gray-800 hover:bg-gray-700 min-h-[200px]"
       onClick={onClick}
     >
       <Image

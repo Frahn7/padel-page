@@ -82,7 +82,7 @@ export default function Login() {
 
   return (
     <div className="flex justify-center items-center flex-col min-h-screen ">
-      <section className="bg-gray-700 dark:bg-gray-800 p-7 rounded-lg">
+      <section className="bg-gray-700 dark:bg-gray-800 p-7 rounded-lg sm:p-[20px]">
         <div className="flex justify-center py-4">
           <h1 className="text-[25px]">Inicia sesion para continuar!</h1>
         </div>

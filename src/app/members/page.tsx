@@ -79,7 +79,7 @@ export default function Members() {
       <div className="flex justify-center py-7">
         <InputSearch onChange={(e) => setFilterMembers(e.target.value)} />
       </div>
-      <div className="flex flex-wrap flex-row justify-center gap-4 py-3">
+      <div className="flex flex-wrap flex-col md:flex-row justify-center gap-4 py-3">
         {Players.map((member, i) => (
           <Card
             onClick={() => router.push(`/member-profile?id=${member.id}`)}
