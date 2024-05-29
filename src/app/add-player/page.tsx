@@ -114,7 +114,7 @@ export default function AddPlayer() {
         <div className="flex items-center justify-center">
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="min-w-[550px] bg-gray-800 rounded-3xl"
+            className="md:min-w-[550px] bg-gray-800 rounded-3xl"
           >
             <div className="p-4 space-y-4 ">
               <h1 className="text-[25px] mb-10 text-center ">
